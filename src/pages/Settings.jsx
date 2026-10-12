@@ -1,0 +1,4 @@
+import PageHeader from '../components/common/PageHeader.jsx'
+export default function Settings() {
+  return <div className="page-stack"><PageHeader eyebrow="PREFERENCES" title="Settings" description="Profile preferences and application configuration will be added here." /><div className="panel settings-placeholder"><div className="settings-avatar">AS</div><div><h2>Demo profile</h2><p>Aarav Sharma · Student</p><span className="mini-chip">Frontend prototype</span></div><p className="settings-note">Authentication and role-based profile data will be connected after the backend service contract is ready.</p></div></div>
+}
