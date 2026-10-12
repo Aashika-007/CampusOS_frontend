@@ -14,7 +14,7 @@ const titles = {
 
 export default function Header({ onMenuClick }) {
   const location = useLocation()
-  const { role, setRole, profile } = useRole()
+  const { role, setRole, profile = { initials: 'AS', name: 'Aarav Sharma' } } = useRole()
   const title = titles[location.pathname] || 'CampusOS'
   const onRoleChange = (event) => {
     const nextRole = event.target.value

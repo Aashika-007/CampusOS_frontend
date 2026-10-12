@@ -19,8 +19,8 @@ const linksByRole = {
 }
 
 export default function Sidebar({ mobileOpen = false, onNavigate }) {
-  const { role, profile } = useRole()
-  const links = linksByRole[role]
+  const { role, profile = { label: 'Student', name: 'Aarav Sharma', initials: 'AS' } } = useRole()
+  const links = linksByRole[role] || linksByRole.student
   return <>
     {mobileOpen && <button className="sidebar-scrim" aria-label="Close navigation" onClick={onNavigate} />}
     <aside className={`sidebar ${mobileOpen ? 'sidebar-open' : ''}`}>

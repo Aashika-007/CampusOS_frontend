@@ -11,6 +11,12 @@ import { auth, db } from '../firebase.js'
 
 const RoleContext = createContext(null)
 
+const demoUser = {
+  uid: 'demo-student-user',
+  email: 'aarav@campusos.demo',
+  displayName: 'Aarav Sharma',
+}
+
 const roleProfiles = {
   student: {
     label: 'Student',
@@ -26,11 +32,23 @@ const roleProfiles = {
   },
 }
 
+const buildProfile = (roleName, name) => ({
+  ...roleProfiles[roleName],
+  name,
+  initials: (name || 'U')
+    .split(/\s+/)
+    .map((part) => part[0])
+    .join('')
+    .slice(0, 2)
+    .toUpperCase(),
+  email: demoUser.email,
+})
+
 export function RoleProvider({ children }) {
-  const [user, setUser] = useState(null)
-  const [role, setRole] = useState(null)
-  const [profile, setProfile] = useState(null)
-  const [loading, setLoading] = useState(true)
+  const [user, setUser] = useState(demoUser)
+  const [role, setRole] = useState('student')
+  const [profile, setProfile] = useState(buildProfile('student', 'Aarav Sharma'))
+  const [loading, setLoading] = useState(false)
   const [roleError, setRoleError] = useState('')
 
   useEffect(() => {
@@ -41,9 +59,9 @@ export function RoleProvider({ children }) {
 
       setLoading(true)
       setRoleError('')
-      setUser(firebaseUser)
-      setRole(null)
-      setProfile(null)
+      setUser(firebaseUser || demoUser)
+      setRole(firebaseUser ? null : 'student')
+      setProfile(firebaseUser ? null : buildProfile('student', 'Aarav Sharma'))
 
       if (!firebaseUser) {
         setLoading(false)
