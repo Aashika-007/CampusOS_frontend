@@ -1,6 +1,6 @@
 
 import { Navigate, Route, Routes } from 'react-router-dom';
-import AppLayout from '../components/layout/AppLayout.jsx';
+import AppLayout from '../components/layout/AppLayout.jsx'
 import StudentDashboard from '../pages/student/Dashboard.jsx';
 import NewRequest from '../pages/student/NewRequest.jsx';
 import RequestHistory from '../pages/student/RequestHistory.jsx';
